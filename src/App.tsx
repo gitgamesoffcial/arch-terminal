@@ -38,7 +38,7 @@ export default function App() {
             
             <p className="eyebrow">USER PROFILE</p>
             <h1>
-              yourname<span>@arch</span>
+              Nikita<span>@arch</span>
             </h1>
             <p className="bio">Designer, developer, and Linux enjoyer.</p>
 
