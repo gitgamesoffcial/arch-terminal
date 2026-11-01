@@ -2,11 +2,11 @@ import "./App.css";
 import steamBg from "./assets/steam-bg.png";
 
 const links = [
-  { label: "GitHub", detail: "Code & projects", href: "https://github.com" },
+  { label: "GitHub", detail: "Code & projects", href: "https://github.com/gitgamesoffcial" },
   { label: "Instagram", detail: "Photos & updates", href: "https://instagram.com" },
   { label: "YouTube", detail: "Videos", href: "https://youtube.com" },
-  { label: "Steam", detail: "My Steam profile", href: "https://steamcommunity.com" },
-  { label: "Contact", detail: "Say hello", href: "mailto:you@example.com" },
+  { label: "Steam", detail: "My Steam profile", href: "https://steamcommunity.com/profiles/76561198634497466" },
+  { label: "Contact", detail: "Say hello", href: "mailto:durunda735@proton.me" },
 ];
 
 export default function App() {
