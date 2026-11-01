@@ -1,4 +1,5 @@
 import "./App.css";
+import steamBg from "./assets/steam-bg.png";
 
 const links = [
   { label: "GitHub", detail: "Code & projects", href: "https://github.com" },
@@ -9,13 +10,11 @@ const links = [
 ];
 
 export default function App() {
-  const bgUrl = `${import.meta.env.BASE_URL}steam-bg.png`;
-
   return (
     <main
       className="screen crt"
       style={{
-        backgroundImage: `linear-gradient(rgba(5, 8, 14, 0.72), rgba(5, 8, 14, 0.82)), url("${bgUrl}")`,
+        backgroundImage: `linear-gradient(rgba(5, 8, 14, 0.72), rgba(5, 8, 14, 0.82)), url("${steamBg}")`,
       }}
     >
       <div className="crt-bezel">
@@ -31,13 +30,12 @@ export default function App() {
           </header>
 
           <div className="content">
-            {/* Avatar now uses the pinned image asset scaled to fit perfectly */}
-            <div
-              className="avatar"
+            <div 
+              className="avatar" 
               aria-label="Steam Avatar Profile Picture"
-              style={{ backgroundImage: `url("${bgUrl}")` }}
+              style={{ backgroundImage: `url("${steamBg}")` }}
             />
-
+            
             <p className="eyebrow">USER PROFILE</p>
             <h1>
               yourname<span>@arch</span>
