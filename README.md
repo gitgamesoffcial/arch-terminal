@@ -16,4 +16,4 @@ Anvnamnet. | STATUS: RETIRED.
 
 
 # Other stuff.
-<iframe src="https://api.gamevox.com/api/public/widget/65c11531-9ede-4b4c-8534-31527d6cc82c" width="350" height="500" frameborder="0"></iframe>
+soon cus problems..
