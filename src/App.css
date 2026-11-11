@@ -54,10 +54,17 @@ body,
 }
 
 .arch-logo {
-  color: #1793d1;
-  font-weight: 700;
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   user-select: none;
+}
+
+.arch-logo img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  mix-blend-mode: screen;
 }
 
 .workspaces {
