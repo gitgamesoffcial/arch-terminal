@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import "./App.css";
 import steamBg from "./assets/steam-bg.png";
 
@@ -10,8 +11,47 @@ const links = [
 ];
 
 export default function App() {
+  const screenRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (direction: "up" | "down") => {
+    const amount = direction === "up" ? -180 : 180;
+    const contentEl = contentRef.current;
+    const screenEl = screenRef.current;
+
+    if (contentEl && contentEl.scrollHeight > contentEl.clientHeight) {
+      contentEl.scrollBy({ top: amount, behavior: "smooth" });
+    } else if (screenEl && screenEl.scrollHeight > screenEl.clientHeight) {
+      screenEl.scrollBy({ top: amount, behavior: "smooth" });
+    } else {
+      window.scrollBy({ top: amount, behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) {
+        return;
+      }
+
+      const key = e.key.toLowerCase();
+      if (key === "q" || e.key === "ArrowUp") {
+        e.preventDefault();
+        handleScroll("up");
+      } else if (key === "e" || e.key === "ArrowDown") {
+        e.preventDefault();
+        handleScroll("down");
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
     <main
+      ref={screenRef}
       className="screen crt"
       style={{
         backgroundImage: `linear-gradient(rgba(5, 8, 14, 0.72), rgba(5, 8, 14, 0.82)), url("${steamBg}")`,
@@ -29,13 +69,13 @@ export default function App() {
             <span className="bar-right">arch btw</span>
           </header>
 
-          <div className="content">
-            <div 
-              className="avatar" 
+          <div className="content" ref={contentRef}>
+            <div
+              className="avatar"
               aria-label="Steam Avatar Profile Picture"
               style={{ backgroundImage: `url("${steamBg}")` }}
             />
-            
+
             <p className="eyebrow">USER PROFILE</p>
             <h1>
               Nikita<span>@arch</span>
@@ -73,6 +113,27 @@ export default function App() {
             </footer>
           </div>
         </section>
+      </div>
+
+      <div className="scroll-controls" aria-label="Scroll controls">
+        <button
+          type="button"
+          className="scroll-btn"
+          onClick={() => handleScroll("up")}
+          title="Scroll up (Q or Up Arrow)"
+          aria-label="Scroll up"
+        >
+          ▲ <kbd>Q</kbd>
+        </button>
+        <button
+          type="button"
+          className="scroll-btn"
+          onClick={() => handleScroll("down")}
+          title="Scroll down (E or Down Arrow)"
+          aria-label="Scroll down"
+        >
+          ▼ <kbd>E</kbd>
+        </button>
       </div>
 
       <div className="scanlines" aria-hidden="true" />
