@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import steamBg from "./assets/steam-bg.png";
+import archLogo from "./assets/arch-logo.png";
 
 const links = [
   { label: "GitHub", detail: "Code & projects", href: "https://github.com" },
@@ -81,15 +82,7 @@ export default function App() {
       <header className="arch-topbar">
         <div className="topbar-left">
           <span className="arch-logo" title="Arch Linux">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M12 2C11.12 4.15 10.58 5.56 9.6 7.67C10.2 8.31 10.94 9.05 12.14 9.89C10.85 9.36 9.97 8.83 9.31 8.27C8.05 10.9 6.08 14.65 2.08 21.84C5.22 20.03 7.66 18.91 9.93 18.49C9.83 18.07 9.78 17.61 9.78 17.13L9.79 17.03C9.84 15.05 10.87 13.52 12.09 13.62C13.31 13.73 14.26 15.42 14.21 17.4C14.2 17.77 14.16 18.13 14.08 18.46C16.33 18.9 18.74 20.01 21.84 21.8C21.23 20.67 20.68 19.66 20.16 18.7C19.34 18.06 18.48 17.24 16.73 16.34C17.93 16.65 18.79 17.01 19.46 17.41C14.17 7.56 13.74 6.24 12 2Z" />
-            </svg>
+            <img src={archLogo} alt="Arch Linux" />
           </span>
           <div className="workspaces">
             {workspaces.map((ws) => (
