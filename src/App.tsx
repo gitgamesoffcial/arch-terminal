@@ -10,6 +10,8 @@ const links = [
   { label: "Contact", detail: "Say hello", href: "mailto:durunda735@proton.me" },
 ];
 
+const workspaces =;
+
 export default function App() {
   const screenRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -76,14 +78,13 @@ export default function App() {
         backgroundImage: `linear-gradient(rgba(5, 8, 14, 0.72), rgba(5, 8, 14, 0.82)), url("${steamBg}")`,
       }}
     >
-      {/* Arch Linux Waybar Topbar */}
       <header className="arch-topbar">
         <div className="topbar-left">
           <span className="arch-logo" title="Arch Linux">
             
           </span>
           <div className="workspaces">
-            {[1, 2, 3, 4].map((ws) => (
+            {workspaces.map((ws) => (
               <button
                 key={ws}
                 type="button"
@@ -108,7 +109,6 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Terminal Window */}
       {!isMinimized && (
         <div className="crt-bezel">
           <section className="card">
@@ -169,7 +169,6 @@ export default function App() {
         </div>
       )}
 
-      {/* Scroll Buttons */}
       <div className="scroll-controls" aria-label="Scroll controls">
         <button
           type="button"
@@ -191,7 +190,6 @@ export default function App() {
         </button>
       </div>
 
-      {/* Arch Linux Bottom Taskbar / Dock */}
       <nav className="arch-taskbar" aria-label="Desktop Taskbar">
         <button
           type="button"
