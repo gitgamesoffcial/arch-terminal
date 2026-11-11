@@ -1,6 +1,331 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: #05080e;
+  color: #e2e8f0;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.screen {
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 58px 16px 76px;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Arch Topbar (Waybar Style) */
+.arch-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 34px;
+  background: rgba(8, 12, 20, 0.9);
+  border-bottom: 1px solid rgba(23, 147, 209, 0.35);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  font-size: 0.78rem;
+  z-index: 60;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arch-logo {
+  color: #1793d1;
+  font-weight: 700;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.workspaces {
+  display: flex;
+  gap: 4px;
+}
+
+.ws-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  color: #94a3b8;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ws-btn:hover {
+  color: #f8fafc;
+  background: rgba(23, 147, 209, 0.15);
+}
+
+.ws-btn.active {
+  background: rgba(23, 147, 209, 0.25);
+  border-color: #1793d1;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.active-window {
+  color: #64748b;
+  margin-left: 6px;
+}
+
+.topbar-clock {
+  color: #f8fafc;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.sys-pill {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #94a3b8;
+  font-size: 0.72rem;
+}
+
+.net-pill {
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Main Terminal Card */
+.crt-bezel {
+  width: 100%;
+  max-width: 480px;
+  padding: 10px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.6));
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(23, 147, 209, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  background: rgba(10, 14, 23, 0.88);
+  border: 1px solid rgba(23, 147, 209, 0.35);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dots i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  font-style: normal;
+}
+
+.dots i:nth-child(1) {
+  background: #ff5f56;
+}
+
+.dots i:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.dots i:nth-child(3) {
+  background: #27c93f;
+}
+
+.bar-right {
+  color: #1793d1;
+  font-weight: 600;
+}
+
+.content {
+  padding: 26px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-height: 68vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #1793d1 rgba(255, 255, 255, 0.05);
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #1793d1;
+  border-radius: 3px;
+}
+
+.avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #1793d1;
+  box-shadow: 0 0 20px rgba(23, 147, 209, 0.4);
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: #1793d1;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+h1 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 8px;
+}
+
+h1 span {
+  color: #1793d1;
+}
+
+.bio {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #f1f5f9;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  animation: fadeSlideUp 0.4s ease backwards;
+}
+
+.link-card:hover {
+  transform: translateY(-2px);
+  background: rgba(23, 147, 209, 0.14);
+  border-color: #1793d1;
+  box-shadow: 0 6px 20px rgba(23, 147, 209, 0.2);
+}
+
+.link-icon {
+  font-size: 1.1rem;
+  color: #1793d1;
+  margin-right: 14px;
+}
+
+.link-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  text-align: left;
+}
+
+.link-copy strong {
+  font-size: 0.95rem;
+  color: #f8fafc;
+}
+
+.link-copy small {
+  font-size: 0.76rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.link-arrow {
+  color: #64748b;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.link-card:hover .link-arrow {
+  color: #1793d1;
+  transform: translateX(4px);
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.footer-right {
+  margin-left: auto;
+  color: #94a3b8;
+}
+
+/* Scroll Controls */
 .scroll-controls {
   position: fixed;
-  bottom: 20px;
+  bottom: 72px;
   right: 20px;
   z-index: 50;
   display: flex;
@@ -14,9 +339,9 @@
   justify-content: space-between;
   gap: 8px;
   padding: 8px 12px;
-  background: rgba(10, 15, 25, 0.85);
+  background: rgba(10, 15, 25, 0.88);
   color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(23, 147, 209, 0.4);
   border-radius: 8px;
   font-family: inherit;
   font-size: 0.85rem;
@@ -26,8 +351,8 @@
 }
 
 .scroll-btn:hover {
-  background: rgba(25, 35, 55, 0.95);
-  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(23, 147, 209, 0.2);
+  border-color: #1793d1;
   transform: translateY(-1px);
 }
 
@@ -41,4 +366,97 @@
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.1);
   color: #94a3b8;
+}
+
+/* Arch Bottom Taskbar / Dock */
+.arch-taskbar {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(8, 12, 20, 0.9);
+  border: 1px solid rgba(23, 147, 209, 0.35);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
+  z-index: 60;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  background: rgba(23, 147, 209, 0.2);
+  border-color: #1793d1;
+  color: #f8fafc;
+}
+
+.task-item.running::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 2px;
+  background: #1793d1;
+  border-radius: 2px;
+}
+
+.task-icon {
+  color: #1793d1;
+  font-weight: 700;
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.22) 50%,
+    rgba(0, 0, 0, 0.22)
+  );
+  background-size: 100% 4px;
+}
+
+@media (max-width: 600px) {
+  .active-window,
+  .topbar-right,
+  .task-label {
+    display: none;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
