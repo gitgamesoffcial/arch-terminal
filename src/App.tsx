@@ -10,7 +10,7 @@ const links = [
   { label: "Contact", detail: "Say hello", href: "mailto:durunda735@proton.me" },
 ];
 
-const workspaces =;
+const workspaces = Array.from({ length: 4 }, (_, i) => i + 1);
 
 export default function App() {
   const screenRef = useRef<HTMLElement>(null);
@@ -52,7 +52,7 @@ export default function App() {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
-      if (target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) {
+      if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT")) {
         return;
       }
 
